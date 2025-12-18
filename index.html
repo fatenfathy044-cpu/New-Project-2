@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ShopHub</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="dark">
+
+<header class="navbar">
+  <div class="logo">Shop<span>Hub</span></div>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Products</a>
+    <a href="#">Categories</a>
+    <a href="#">Deals</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <div class="nav-icons">
+    <input type="text" placeholder="Search products...">
+    <i class="fa-regular fa-user"></i>
+    <i class="fa-solid fa-cart-shopping"><span id="cartCount">0</span></i>
+    <i class="fa-solid fa-moon" id="toggleTheme"></i>
+  </div>
+</header>
+
+<main class="products" id="products"></main>
+<!-- ------------------------------------- welcome message -------------------------------  -->
+
+<div id="welcomeOverlay">
+  <div class="welcome-box">
+    <span id="closeWelcome">&times;</span>
+    <h2>Welcome to ShopHub 👋</h2>
+    <p>Happy to have you here. Enjoy shopping our latest products.</p>
+    <button id="startShopping">Start Shopping</button>
+  </div>
+</div>
+<script src="main.js"></script>
+</body>
