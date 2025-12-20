@@ -51,7 +51,7 @@ nav a {
   gap: 30px;
 }
 
-.nav-icons input {
+.search-input {
   width: 380px;
   padding: 8px 15px;
   border-radius: 25px;
@@ -59,7 +59,21 @@ nav a {
   outline: none;
   margin: 0 100px;
 }
-
+body.dark .search-input{
+    background-color: #ffffff;
+    color: #000000;
+}
+body.dark .search-input::placeholder{
+    color: #777;
+}
+body.light .search-input{
+    background-color: #ffffff;
+    color: #ffffff;
+   border: 2px solid #e0e0e0;
+}
+body.light .search-input::placeholder{
+    #ccc
+}
 .nav-icons i {
   cursor: pointer;
   position: relative;
@@ -88,6 +102,8 @@ body.dark #toggleTheme:hover,
 body.light #toggleTheme:hover {
   color: #3fbac2;
 }
+
+
 /* ----------------------info for  product -----------------------------  */
 .products {
   display: grid;
