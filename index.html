@@ -27,8 +27,59 @@
     <i class="fa-solid fa-moon" id="toggleTheme"></i>
   </div>
 </header>
+<!-- ------------------------------------- cover -------------------------------  -->
+<section class="hero">
+  <h1 class="site-title">
+    Shop<span>Hub</span></h1>
 
+  <p class="site-subtitle">
+  <span class="text">Best Deals</span>
+  <span class="dot">•</span>
+  <span class="text">Best Prices</span>
+  <span class="dot">•</span>
+  <span class="text">Best Shopping</span>
+</p>
+
+  <div class="banner">
+    <img 
+      src="1600w-0zBQ5wO50-8.webp"
+      alt="ShopHub Offers Banner">
+  </div>
+</section>
+
+
+
+<!-- ------------------------------------- filter -------------------------------  -->
+
+<div class="filters-bar">
+  <div class="filters-container">
+
+    <div class="filter-group">
+      <label>Categories</label>
+      <select id="categoryFilter">
+        <option value="all">All Categories</option>
+        <option value="men's clothing">Men's Clothing</option>
+        <option value="women's clothing">Women's Clothing</option>
+        <option value="jewelery">Jewelry</option>
+        <option value="electronics">Electronics</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label>Sort by</label>
+      <select id="sortFilter">
+        <option value="featured">Featured</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="rating-desc">Rating: High to Low</option>
+      </select>
+    </div>
+
+  </div>
+</div>
+<!----------------------------------------- Products ----------------------------------->
 <main class="products" id="products"></main>
+<span id="cartCount">0</span>
 <!-- ------------------------------------- welcome message -------------------------------  -->
 
 <div id="welcomeOverlay">

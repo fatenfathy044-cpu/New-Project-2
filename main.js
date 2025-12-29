@@ -1,13 +1,11 @@
-// --------------------------------------------- دمج الhtml -------------------------------------------------- 
-
+// ================== Elements ==================
 const productsContainer = document.getElementById("products");
-const toggleTheme = document.getElementById("toggleTheme");
+const categoryFilter = document.getElementById("categoryFilter");
+const sortFilter = document.getElementById("sortFilter");
 const cartCount = document.getElementById("cartCount");
 
-let cart = 0;
 
-// --------------------------------------------- info for products -------------------------------------------------- 
-
+// ================== Products Data ==================
 const products = [
   {
     "id": 1,
@@ -250,9 +248,7 @@ const products = [
     }
   }
 ]
-
-// ---------------------------------------------category -------------------------------------------------- 
-
+// ================== Category Name ==================
 function getArabicCategory(category) {
   switch (category) {
     case "men's clothing":
@@ -260,49 +256,32 @@ function getArabicCategory(category) {
     case "women's clothing":
       return "WOMEN";
     case "electronics":
-      return "Electronics";
+      return "ElectRONICS";
     case "jewelery":
-      return "Jewelery";
+      return "JEWELRY";
     default:
       return category;
   }
 }
 
-// ---------------------------------------------add to cart -------------------------------------------------- 
-
-function addToCart() {
-  cart++;
-  cartCount.textContent = cart;
-}
-
-// ---------------------------------------------card / products -------------------------------------------------- 
-
-function renderProducts() {
+// ================== Render ==================
+function renderProducts(productsArray) {
   productsContainer.innerHTML = "";
 
-  products.forEach(product => {
+  productsArray.forEach(product => {
     const stars = "★".repeat(Math.round(product.rating.rate));
 
     productsContainer.innerHTML += `
       <div class="card">
-
-        <img 
-          src="${product.image}" 
-          alt="${product.title}"
-          onerror="this.src='https://via.placeholder.com/500x500?text=No+Image'"
-        >
+        <img src="${product.image}" alt="${product.title}">
 
         <div class="category">
           ${getArabicCategory(product.category)}
         </div>
 
-        <div class="title">
-          ${product.title}
-        </div>
+        <div class="title">${product.title}</div>
 
-        <div class="desc">
-          ${product.description}
-        </div>
+        <div class="desc">${product.description}</div>
 
         <div class="rating">
           ${stars} (${product.rating.count})
@@ -322,31 +301,96 @@ function renderProducts() {
             <i class="fa-regular fa-heart"></i>
           </button>
         </div>
-
       </div>
     `;
   });
 }
 
-// --------------------------------------------- dark and light mood -------------------------------------------------- 
+// ================== Filter + Sort ==================
+function filterProducts() {
+  const selectedCategory = categoryFilter.value;
+  const sortValue = sortFilter.value;
 
-toggleTheme.addEventListener("click", () => {
-  document.body.classList.toggle("light");
-  document.body.classList.toggle("dark");
+  let visibleProducts = products.filter(product => {
+    return (
+      selectedCategory === "all" ||
+      product.category === selectedCategory
+    );
+  });
+
+  if (sortValue === "price-asc") {
+    visibleProducts.sort((a, b) => a.price - b.price);
+  }
+
+  if (sortValue === "price-desc") {
+    visibleProducts.sort((a, b) => b.price - a.price);
+  }
+
+  if (sortValue === "rating-desc") {
+    visibleProducts.sort((a, b) => b.rating.rate - a.rating.rate);
+  }
+
+  renderProducts(visibleProducts);
+}
+// ================== Events ==================
+categoryFilter.addEventListener("change", filterProducts);
+sortFilter.addEventListener("change", filterProducts);
+
+// ================== On Load ==================
+window.addEventListener("load", () => {
+  renderProducts(products);
 });
-renderProducts();
 
-
-// --------------------------------------------- welcome message -------------------------------------------------- 
+// ================== Welcome Message ==================
 const welcomeOverlay = document.getElementById("welcomeOverlay");
 const closeWelcome = document.getElementById("closeWelcome");
 const startShopping = document.getElementById("startShopping");
 
+// تظهر دايمًا مع كل Reload
+window.addEventListener("load", () => {
+  welcomeOverlay.style.display = "flex";
+});
 
-
-function closeWelcomeMessage() {
+// قفل الويلكم
+closeWelcome.addEventListener("click", () => {
   welcomeOverlay.style.display = "none";
+});
+
+startShopping.addEventListener("click", () => {
+  welcomeOverlay.style.display = "none";
+});
+// ================= Dark / Light mode =================
+
+const toggleTheme = document.getElementById("toggleTheme");
+
+// عند فتح الصفحة
+const savedTheme = localStorage.getItem("theme");
+
+if (savedTheme) {
+  document.body.classList.remove("dark", "light");
+  document.body.classList.add(savedTheme);
 }
 
-closeWelcome.addEventListener("click", closeWelcomeMessage);
-startShopping.addEventListener("click", closeWelcomeMessage);
+//  عند الضغط على زر التغيير
+toggleTheme.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+  document.body.classList.toggle("light");
+
+  //  حفظ الوضع الحالي
+  if (document.body.classList.contains("dark")) {
+    localStorage.setItem("theme", "dark");
+  } else {
+    localStorage.setItem("theme", "light");
+  }
+});
+
+// ========================= localStorage card ================================= 
+
+let cart = Number(localStorage.getItem("cartCount")) || 0;
+cartCount.textContent = cart;
+
+function addToCart() {
+  cart++;
+  cartCount.textContent = cart;
+  localStorage.setItem("cartCount", cart);
+}

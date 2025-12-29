@@ -26,7 +26,7 @@ body.light {
 }
 
 body.light .navbar {
-  background: #ffffff;
+  background: #e6e2e2;
 }
 
 .logo {
@@ -69,10 +69,10 @@ body.dark .search-input::placeholder{
 body.light .search-input{
     background-color: #ffffff;
     color: #ffffff;
-   border: 2px solid #e0e0e0;
+    border: 2px solid #e0e0e0;
 }
 body.light .search-input::placeholder{
-    #ccc
+  color:  #ccc;
 }
 .nav-icons i {
   cursor: pointer;
@@ -203,6 +203,147 @@ body.light .card {
   cursor: pointer;
   color: inherit;
 }
+
+/* ------------------------------------- cover -------------------------------   */
+.hero {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+.site-title {
+  font-size: 42px;
+  font-weight: 800;
+  position: relative;
+  display: inline-block;
+}
+
+.site-title span {
+  color: #4da3ff;
+}
+
+body.dark .site-title {
+  color: #ffffff;
+}
+
+body.light .site-title {
+  color: #111111;
+}
+
+.site-title::after {
+  content: "";
+  display: block;
+  width: 60%;
+  height: 3px;
+  background-color: #4da3ff;
+  margin: 8px auto 0;
+  border-radius: 2px;
+  margin-bottom: 30px;
+}
+
+
+.site-subtitle {
+  font-size: 16px;
+  margin-top: 8px;
+  margin-bottom: 20px;
+}
+
+.site-subtitle .text {
+  color: #4da3ff; 
+  font-weight: 500;
+}
+
+.site-subtitle .dot {
+  color: #ffffff;  
+  margin: 0 8px;
+  font-weight: bold;
+}
+body.light .site-subtitle .dot{
+  color: #000;
+}
+.banner {
+  width: 100vw;
+ margin-left: calc(-50vw + 50%);
+ overflow: hidden;
+}
+
+.banner img {
+  width: 100%;
+  height: 550px;
+  object-fit: cover;
+  border-radius: 0px;
+  box-shadow: none ;
+}
+/* ---------------------------------- filter -------------------------------------------------  */
+.filters-bar {
+  width: 100%;
+  padding: 20px 0;
+  background-color: var(--bg-color);
+  
+}
+
+.filters-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 30px;
+  justify-content: flex-start;
+  padding-left: 40px;
+  margin-left: 0px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-group label {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.filter-group select {
+  min-width: 200px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background-color: transparent;
+  color: var(--text-color);
+  outline: none;
+  cursor: pointer;
+}
+
+/* Light mode */
+body.light .filters-bar {
+  border-bottom: 1px solid #ddd;
+}
+
+body.light .filter-group select {
+  border: 1px solid #ccc;
+  color: #111;
+}
+
+body.dark select {
+  background-color: #1e1e1e;
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+body.dark select option {
+  background-color: #1e1e1e; 
+  color: #ffffff;           
+}
+body.light select {
+  background-color: #ffffff;
+  color: #111111;
+  border: 1px solid #ccc;
+}
+
+body.light select option {
+  background-color: #ffffff;
+  color: #111111;
+}
 /* --------------------------------------------- welcome message ----------------------------------- */
 
 #welcomeOverlay {
@@ -248,7 +389,3 @@ body.light .welcome-box {
   cursor: pointer;
 }
 
-@keyframes scaleIn {
-  from { transform: scale(0.7); opacity: 0; }
-  to   { transform: scale(1); opacity: 1; }
-}
